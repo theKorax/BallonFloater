@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControllerX : MonoBehaviour
 {
     public bool gameOver = false;
-    private bool isLowEnough = true;
+    private bool isLowEnough;
 
     public float floatForce;
     public float startForce = 10.0f;
@@ -36,18 +36,19 @@ public class PlayerControllerX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If the player is not low enough, don't float higher
+        if (transform.position.y > 13)
+        {
+            isLowEnough = false;
+        }
+        else
+        {
+            isLowEnough = true;
+        }
         // While space is pressed and player is low enough, float up
         if (Input.GetKey(KeyCode.Space) && !gameOver && isLowEnough)
         {
             playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
-            if(transform.position.y > 13)
-            {
-                isLowEnough = false;
-            }
-            else
-            {
-                isLowEnough = true;
-            }
         }
     }
 
