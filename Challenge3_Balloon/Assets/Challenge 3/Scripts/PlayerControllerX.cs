@@ -44,6 +44,7 @@ public class PlayerControllerX : MonoBehaviour
             {
                 isLowEnough = false;
             }
+            isLowEnough = true;
         }
     }
 
